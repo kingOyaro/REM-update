@@ -24,29 +24,32 @@ import org.jfree.util.Rotation;
  */
 public class piechart extends JFrame {
     connection con = new connection();
-    int male,female;
+    int married,single;
     
         public piechart(String appTitle, String chartTitle) throws SQLException
         {
-            PieDataset dataset = createDataset();
-            JFreeChart chart = createChart(dataset, chartTitle);
-            ChartPanel chartPanel = new ChartPanel(chart);
-            chartPanel.setPreferredSize(new java.awt.Dimension(800, 500));
-            setContentPane(chartPanel);
+
+            
+            PieDataset datasets = createDataset2();
+            JFreeChart charts = createCharts(datasets, chartTitle);
+            ChartPanel chartPanels = new ChartPanel(charts);
+            chartPanels.setPreferredSize(new java.awt.Dimension(800, 500));
+            setContentPane(chartPanels);
         }
-        private PieDataset createDataset() throws SQLException
+
+        private PieDataset createDataset2() throws SQLException
         {
-            DefaultPieDataset rsl = new DefaultPieDataset();
+            DefaultPieDataset rst = new DefaultPieDataset();
             try{
                 ResultSet rs = con.pieData();
                 while(rs.next()){
                     
-                    String gender = rs.getString(2);
-                    if("Female".equals(gender)){
-                        female=female + 1;
+                    String marital_status = rs.getString(3);
+                    if("Married".equals(marital_status)){
+                        married=married + 1;
                     }
-                    if("Male".equals(gender)){
-                        male=male + 1;
+                    else if("Single".equals(marital_status)){
+                        single=single + 1;
                     }
                 }
                 
@@ -55,16 +58,17 @@ public class piechart extends JFrame {
                 
             }
             
-            rsl.setValue("Male",male);
-            rsl.setValue("Female",female);
-            return rsl;
+            rst.setValue("Married",married);
+            rst.setValue("single",single);
+            return rst;
     }
-        private JFreeChart createChart(PieDataset dataset,String title)
+
+        private JFreeChart createCharts(PieDataset datasets,String titles)
         {
-            JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
-            PiePlot3D plot = (PiePlot3D) chart.getPlot();
-            plot.setDirection(Rotation.CLOCKWISE);
-            plot.setForegroundAlpha(0.5f);
-            return chart;
+            JFreeChart charts = ChartFactory.createPieChart3D(titles, datasets, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
+            PiePlot3D plots = (PiePlot3D) charts.getPlot();
+            plots.setDirection(Rotation.CLOCKWISE);
+            plots.setForegroundAlpha(0.5f);
+            return charts;
         }
 }

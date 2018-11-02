@@ -5,18 +5,15 @@
  */
 package real.estate.management;
 
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,29 +24,40 @@ private final JButton addhouse;
 private final JButton addclients;
 private final JButton addemployee;
 private final JButton stats;
+private final JButton addrent;
 private final JButton logout;
 
 public home(){
     super("HOME");    
-    setLayout(new FlowLayout());
+    setLayout(null);
     
 addclients = new JButton("ADD CLIENT");
+addclients.setBounds(800,200, 140, 40);
 add(addclients);
 addclients.addActionListener(new ac());
 
 addemployee = new JButton("ADD EMPLOYEE");
+addemployee.setBounds(800,300, 140, 40);
 addemployee.addActionListener(new ae());
 add (addemployee);
 
 addhouse = new JButton("HOUSE");
+addhouse.setBounds(800,400, 140, 40);
 addhouse.addActionListener(new ah());
 add (addhouse);
 
 stats = new JButton("STATISTICS");
+stats.setBounds(800,500, 140, 40);
 stats.addActionListener(new st());
 add (stats);
 
+addrent = new JButton("RENT");
+addrent.setBounds(800,600, 140, 40);
+addrent.addActionListener(new ar());
+add (addrent);
+
 logout = new JButton("LOG OUT");
+logout.setBounds(1400,800, 140, 40);
 logout.addActionListener(new lo());
 add (logout);
 }
@@ -68,7 +76,8 @@ public class ac implements ActionListener
         client fm = new client();
         fm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fm.setSize(1000, 800);
-        fm.setVisible(true);
+        fm.setVisible(true); 
+        
     }
 }
 public class ae implements ActionListener
@@ -88,11 +97,15 @@ public class ah implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        close();
-        house hs = new house();
-        hs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        hs.setSize(1000, 800);
-        hs.setVisible(true);
+        try {
+            close();
+            house hs = new house();
+            hs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            hs.setSize(1000, 800);
+            hs.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 public class st implements ActionListener
@@ -107,6 +120,24 @@ public class st implements ActionListener
         stat.setVisible(true);
     }
 }
+
+public class ar implements ActionListener
+{
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        try {
+            close();
+            rent rn = new rent();
+            rn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            rn.setSize(1000, 800);
+            rn.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
 public class lo implements ActionListener
 {
     @Override

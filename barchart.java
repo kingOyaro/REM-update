@@ -30,12 +30,14 @@ public class barchart extends JFrame{
     connection con = new connection();
     int age,ageg,agegrpa,agegrpb,agegrpc,agegrpd,agegrpe,agegrpf;
     
+    
     public barchart(String appTitle, String chartTitle) throws SQLException{
         CategoryDataset dataset = createDataset();
         JFreeChart chart = createbarchart(dataset,"age group");
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(800, 500));
         setContentPane(chartPanel);
+       
     }
     
     private CategoryDataset createDataset()
@@ -79,32 +81,33 @@ public class barchart extends JFrame{
             return ds;
             }
     
+   
+    
     private JFreeChart createbarchart(CategoryDataset data,String title){
-        JFreeChart chart = ChartFactory.createBarChart(title, "age group", "number", data);
-        chart.setBackgroundPaint(Color.LIGHT_GRAY);
-        CategoryPlot plot = chart.getCategoryPlot();
-        plot.setRangeGridlinePaint(Color.BLUE);
-        plot.setDomainGridlinePaint(Color.BLUE);
-        plot.setBackgroundPaint(Color.WHITE);
-        NumberAxis rangeAxis =(NumberAxis) plot.getRangeAxis();
+        JFreeChart charts = ChartFactory.createBarChart(title, "age group", "number", data);
+        charts.setBackgroundPaint(Color.LIGHT_GRAY);
+        CategoryPlot plots = charts.getCategoryPlot();
+        plots.setRangeGridlinePaint(Color.BLUE);
+        plots.setDomainGridlinePaint(Color.BLUE);
+        plots.setBackgroundPaint(Color.WHITE);
+        NumberAxis rangeAxis =(NumberAxis) plots.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         
-        BarRenderer ren = (BarRenderer) plot.getRenderer();
+        BarRenderer rens = (BarRenderer) plots.getRenderer();
         GradientPaint groupa = new GradientPaint(0.0f,0.0f,Color.CYAN,0.0f,0.0f,Color.WHITE);
         GradientPaint groupb = new GradientPaint(0.0f,0.0f,Color.ORANGE,0.0f,0.0f,Color.WHITE);
         GradientPaint groupc = new GradientPaint(0.0f,0.0f,Color.MAGENTA,0.0f,0.0f,Color.WHITE);
         GradientPaint groupd = new GradientPaint(0.0f,0.0f,Color.PINK,0.0f,0.0f,Color.WHITE);
-        GradientPaint groupe = new GradientPaint(0.0f,0.0f,Color.GREEN,0.0f,0.0f,Color.WHITE);
-        GradientPaint groupf = new GradientPaint(0.0f,0.0f,Color.RED,0.0f,0.0f,Color.WHITE);
-        ren.setSeriesPaint(1, groupa);
-        ren.setSeriesPaint(2, groupb);
-        ren.setSeriesPaint(3, groupc);
-        ren.setSeriesPaint(4, groupd);
-        ren.setSeriesPaint(5, groupe);
-        ren.setSeriesPaint(6, groupf);
+
+        rens.setSeriesPaint(1, groupa);
+        rens.setSeriesPaint(2, groupb);
+        rens.setSeriesPaint(3, groupc);
+        rens.setSeriesPaint(4, groupd);
+
         
-        org.jfree.chart.axis.CategoryAxis domainAxis = plot.getDomainAxis();
+        org.jfree.chart.axis.CategoryAxis domainAxis = plots.getDomainAxis();
         domainAxis.setCategoryLabelPositions(CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 1.0));
-        return chart;
+        return charts;
     }
+    
 }

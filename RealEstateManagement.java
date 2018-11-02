@@ -21,7 +21,7 @@ public class RealEstateManagement {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         
-        login vlog = new login();
+        login vlog= new login();
         vlog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         vlog.setSize(1000, 800);
         vlog.setVisible(true);

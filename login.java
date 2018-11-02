@@ -5,7 +5,6 @@
  */
 package real.estate.management;
 
-import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -44,26 +43,31 @@ private final JButton reset;
 
 public login() throws SQLException{
     super("LOGIN");    
-    setLayout(new FlowLayout());
+    setLayout(null);
 
 usernamelbl = new JLabel("USERNAME");
+usernamelbl.setBounds(400,45,95,20);
 add (usernamelbl);
 
 usernames = new JTextField(21);
+usernames.setBounds(550, 45, 95,20);
 usernames.setToolTipText("Enter username");
 add(usernames);
 
 passwordlbl = new JLabel("PASSWORD");
+passwordlbl.setBounds(400,85,95,20);
 add (passwordlbl);
-
 passwords = new JPasswordField(21);
+passwords.setBounds(550, 85, 95,20);
 passwords.setToolTipText("Enter Password");
 add(passwords);
 
 enter = new JButton("ENTER");
+enter.setBounds(500, 150, 75, 30);
 add(enter);
 
 reset = new JButton("RESET");
+reset.setBounds(580, 150, 75, 30);
 add(reset);
 
 enter.addActionListener(new ac());
@@ -93,7 +97,7 @@ public void close(){
             
             if(rst.next())
             {
-                JOptionPane.showMessageDialog(null, "ACCESS GRANTED :)");
+                JOptionPane.showMessageDialog(null, "ACCESS GRANTED   :)");
                
                 home hm = new home();
                 close();

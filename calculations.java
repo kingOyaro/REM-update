@@ -5,10 +5,12 @@
  */
 package real.estate.management;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author KID_UNTAMED
  */
-public class calculations {
+public class calculations extends JFrame{
     
 }

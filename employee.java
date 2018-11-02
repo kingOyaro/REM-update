@@ -5,7 +5,6 @@
  */
 package real.estate.management;
 
-import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -47,31 +46,40 @@ public void close(){
 
 public employee(){
     super("EMPLOYEE");    
-    setLayout(new FlowLayout());
+    setLayout(null);
     
 employeelbl = new JLabel("Employee ID");
+employeelbl.setBounds(500,120, 105, 20);
 add (employeelbl);
 employeeid = new JTextField(21);
+employeeid.setBounds(600, 120, 105, 20);
 employeeid.setToolTipText("Enter Employee ID ");
 add(employeeid);   
     
 usernamelbl = new JLabel("Username");
+usernamelbl.setBounds(500, 170, 105, 20);
 add (usernamelbl);
 usernames = new JTextField(21);
+usernames.setBounds(600, 170, 105, 20);
 usernames.setToolTipText("Enter Username");
 add(usernames);
 
 passwordlbl = new JLabel("PASSWORD");
+passwordlbl.setBounds(500, 220, 105, 20);
 add (passwordlbl);
 passwords = new JPasswordField(21);
+passwords.setBounds(600, 220, 105, 20);
 passwords.setToolTipText("Enter Password");
 add(passwords);
 
 save = new JButton("SAVE");
+save.setBounds(600, 270, 105, 20);
 add(save);
 reset = new JButton("RESET");
+reset.setBounds(700, 270, 105, 20);
 add(reset);
 back = new JButton("BACK");
+back.setBounds(800, 270, 105, 20);
 add(back);
 
 back.addActionListener(new bc());
